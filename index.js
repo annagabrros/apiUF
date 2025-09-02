@@ -1,11 +1,9 @@
 import express from 'express';
-import { buscarUfs, buscarUfPorId, buscarUfsPorNome } from './servicos/servico';
+import { buscarUfs, buscarUfPorId, buscarUfsPorNome } from './servicos/servico.js';
 
 const app = express();
 
-const  buscarUfsPorNome = (nomeUf) => {
-    return colecaoUf.filter(uf => uf.nome.toLocaleLowerCase().includes(nomeUf.toLocaleLowerCase()))
-};
+
 
 app.get('/ufs', (req, res) => {
     const nomeUf = req.query.busca;
