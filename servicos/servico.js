@@ -12,3 +12,7 @@ export const buscarUfPorId = (id) => {
     const idUF = parseInt(id);
     return colecaoUf.find(uf => uf.id === idUF);
 }
+
+export const buscarUfPorSigla = (sigla) => {
+    return colecaoUf.find(uf => uf.uf && uf.uf.toLowerCase() === sigla.toLowerCase());
+};

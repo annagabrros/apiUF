@@ -1,9 +1,18 @@
 import express from 'express';
-import { buscarUfs, buscarUfPorId, buscarUfsPorNome } from './servicos/servico.js';
+import { buscarUfs, buscarUfPorId, buscarUfsPorNome, buscarUfPorSigla } from './servicos/servico.js';
 
 const app = express();
 
+app.get('/ufs/sigla/:sigla', (req, res) => {
+    const sigla = req.params.sigla;
+    const uf = buscarUfPorSigla(sigla);
 
+    if (uf) {
+        res.json(uf);
+    } else {
+        res.status(404).send({ "erro": "UF com essa sigla não encontrada" });
+    }
+});
 
 app.get('/ufs', (req, res) => {
     const nomeUf = req.query.busca;
@@ -25,6 +34,9 @@ app.get('/ufs/:iduf', (req, res) => {
         res.status(404).send({"erro": "UF não encontrada"});
      }
 });
+
+
+
 
 app.listen(8080, () => {
     console.log('Servidor iniciado na porta 8080');
